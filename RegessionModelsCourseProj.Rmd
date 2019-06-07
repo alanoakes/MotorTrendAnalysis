@@ -46,10 +46,15 @@ with(mtcars,boxplot(mpg ~ am,
               xlab = "Transmission",
               ylab = "Miles Per Gallon",
               main = "Ranges of MPG \nPer Transmission"))
-cdplot(as.factor(mtcars$am) ~ mtcars$mpg,
-       main = "Comparitive\nDistributions of MPG",
-       xlab = "Miles Per Gallon",
-       ylab = "Transmissions")
+plot(density(mtcars$mpg),
+	type="n",
+	main="MPG Distribution for\nMan. & Auto. Trans.",
+	xlab="Miles Per Gallon",
+	xlim=c(0,50),ylim=c(0,0.1))
+lines(density(Manual$mpg),col="gray",lwd=2)
+lines(density(Automatic$mpg),col="black",lwd=2)
+legend("topright",pch=19,col=c("gray","black"),
+	legend=c("Manual","Automatic"),cex=0.8)
 ```
 
 Per the above (EDA) Exploratory Data Analysis plots that determine the averages of MPG per automatic and manual transmissions, it is conclusive that the manual transmission ranks on the higher end only by frequency. We are not able to ultimately conclude the answer to question 1 given frequency alone but must form a hypothesis given the explored data.
